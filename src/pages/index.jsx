@@ -67,37 +67,46 @@ export default function Home() {
     );
     setUsers(findUser);
   };
+  const deleteUser = (userId) => {
+    console.log("userId", userId);
+    const deletedUser = users.filter((user) => user.id !== userId);
+    setUsers(deletedUser);
+  };
   //Реакт state-ээр өөрчлөлт байгаа эсэхийг мэдэрч дахин рендэр хийдэг.
   return (
     <main className="flex flex-col items-center gap-6">
       <h1 className="text-3xl text-gray-950 font-semibold mt-6">
-        User find Application
+        User Find Application
       </h1>
       <div className="flex flex-col gap-4 mt-2">
         <Input handleChange={handleChange} />
         <p>Search Value: {searchValue}</p>
-        <button
-          className="mx-auto w-80 border p-2"
-          onClick={() => {
-            setUsers(null);
-          }}
-        >
-          Clear
-        </button>
-        <button
-          className="mx-auto w-80 border p-2"
-          onClick={() => {
-            setUsers(profiles);
-          }}
-        >
-          View
-        </button>
+        <div className="flex flex-row-reverse justify-between">
+          <button
+            className="px-10 border border-green-500 rounded-lg p-2"
+            onClick={() => {
+              setUsers(null);
+            }}
+          >
+            Clear
+          </button>
+          <button
+            className="px-10 border border-blue-400 rounded-lg p-2"
+            onClick={() => {
+              setUsers(profiles);
+            }}
+          >
+            View
+          </button>
+        </div>
         {users?.map((user) => {
           return (
             <UserCard
               userImg={user.imageUrl}
               firstName={user.firstName}
               age={user.age}
+              userId={user.id}
+              deleteUser={deleteUser}
             />
           );
         })}

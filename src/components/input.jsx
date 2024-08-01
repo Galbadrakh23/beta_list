@@ -9,11 +9,11 @@ const Input = ({ handleChange }) => {
     handleChange(e.target.value);
   };
   return (
-    <div className="flex justify-between">
+    <div className="mx-auto">
       <input
         type="text"
         id="search"
-        className="border border-gray-400 rounded-md"
+        className="border border-gray-400 rounded-md px-20"
         onChange={changeValue}
       />
     </div>
